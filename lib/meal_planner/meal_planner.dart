@@ -25,6 +25,7 @@ import 'package:hackathoncalorie/workouts/workouts_intro.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:back_button_interceptor/back_button_interceptor.dart';
 
 class MealPlanner extends StatefulWidget {
   static String id = 'meal_planner';
@@ -34,6 +35,23 @@ class MealPlanner extends StatefulWidget {
 }
 
 class _MealPlannerState extends State<MealPlanner> {
+  @override
+  void initState() {
+    super.initState();
+    BackButtonInterceptor.add(myInterceptor);
+  }
+
+  @override
+  void dispose() {
+    BackButtonInterceptor.remove(myInterceptor);
+    super.dispose();
+  }
+
+  bool myInterceptor(bool stopDefaultButtonEvent) {
+    Navigator.pop(context); // Do some stuff.
+    return true;
+  }
+
   int _selectedIndex = 1;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);

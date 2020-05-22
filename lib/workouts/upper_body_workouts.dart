@@ -1,3 +1,4 @@
+import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hackathoncalorie/calorie_tracker/calender_timeline.dart';
@@ -56,6 +57,23 @@ class _UpperBodyWorkoutsState extends State<UpperBodyWorkouts> {
       style: optionStyle,
     ),
   ];
+  @override
+  void initState() {
+    super.initState();
+    BackButtonInterceptor.add(myInterceptor);
+  }
+
+  @override
+  void dispose() {
+    BackButtonInterceptor.remove(myInterceptor);
+    super.dispose();
+  }
+
+  bool myInterceptor(bool stopDefaultButtonEvent) {
+    Navigator.pop(context); // Do some stuff.
+    return true;
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(

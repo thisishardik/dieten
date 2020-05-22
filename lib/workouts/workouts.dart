@@ -1,3 +1,4 @@
+import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:flutter/material.dart';
 import 'package:hackathoncalorie/calorie_tracker/calorie_tracker.dart';
 import 'package:hackathoncalorie/dashboard/dashboard.dart';
@@ -44,6 +45,23 @@ class _WorkoutsState extends State<Workouts> {
       style: optionStyle,
     ),
   ];
+  @override
+  void initState() {
+    super.initState();
+    BackButtonInterceptor.add(myInterceptor);
+  }
+
+  @override
+  void dispose() {
+    BackButtonInterceptor.remove(myInterceptor);
+    super.dispose();
+  }
+
+  bool myInterceptor(bool stopDefaultButtonEvent) {
+    Navigator.pop(context); // Do some stuff.
+    return true;
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(

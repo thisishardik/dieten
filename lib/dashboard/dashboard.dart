@@ -1,3 +1,4 @@
+import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
@@ -53,6 +54,22 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
       style: optionStyle,
     ),
   ];
+  @override
+  void initState() {
+    super.initState();
+    BackButtonInterceptor.add(myInterceptor);
+  }
+
+  @override
+  void dispose() {
+    BackButtonInterceptor.remove(myInterceptor);
+    super.dispose();
+  }
+
+  bool myInterceptor(bool stopDefaultButtonEvent) {
+    Navigator.pop(context); // Do some stuff.
+    return true;
+  }
 
   IconData icon = FontAwesomeIcons.minusCircle;
   Future<bool> onBackPressed() {
@@ -76,7 +93,9 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: onBackPressed,
+      onWillPop: () {
+        Navigator.of(context).pop();
+      },
       child: SafeArea(
         child: Scaffold(
           appBar: AppBar(
