@@ -84,7 +84,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   children: <Widget>[
                     FlatButton(
                       onPressed: () {
-                        controller.animateToPage(2,
+                        controller.animateToPage(3,
                             duration: Duration(milliseconds: 400),
                             curve: Curves.linear);
                       },

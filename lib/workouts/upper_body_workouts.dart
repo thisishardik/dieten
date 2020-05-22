@@ -215,43 +215,6 @@ class _UpperBodyWorkoutsState extends State<UpperBodyWorkouts> {
                   },
                 ),
                 SizedBox(height: 20.0),
-                MaterialButton(
-                  padding: EdgeInsets.all(0.0),
-                  splashColor: Colors.white,
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        PageTransition(
-                          type: PageTransitionType.fade,
-                          child: SplashScreen(),
-                        ));
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(35.0),
-                        gradient: LinearGradient(
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                            colors: [
-                              const Color(0xff23b6e6),
-                              const Color(0xff02d39a),
-                            ])),
-                    width: 100.0,
-                    height: 40.0,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: <Widget>[
-                        Text(
-                          'Logout',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 14,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
                 SizedBox(
                   width: 60.0,
                   height: 50,
@@ -260,19 +223,61 @@ class _UpperBodyWorkoutsState extends State<UpperBodyWorkouts> {
                     thickness: 1.2,
                   ),
                 ),
-                SizedBox(height: 50.0),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Center(
-                    child: Text(
-                      'Version: 1.0.0',
-                      style: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 14.0,
-                        fontWeight: FontWeight.bold,
+                Column(
+                  children: <Widget>[
+                    SizedBox(height: 15.0),
+                    MaterialButton(
+                      padding: EdgeInsets.all(0.0),
+                      splashColor: Colors.white,
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.fade,
+                              child: SplashScreen(),
+                            ));
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(35.0),
+                            gradient: LinearGradient(
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                                colors: [
+                                  const Color(0xff23b6e6),
+                                  const Color(0xff02d39a),
+                                ])),
+                        width: 100.0,
+                        height: 40.0,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: <Widget>[
+                            Text(
+                              'Logout',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 14,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
+                    SizedBox(height: 15.0),
+                    Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: Center(
+                        child: Text(
+                          'Version: 1.0.0',
+                          style: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 14.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -410,7 +415,7 @@ class _UpperBodyWorkoutsState extends State<UpperBodyWorkouts> {
               padding:
                   const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
               child: GNav(
-                  gap: 3,
+                  gap: 5,
                   activeColor: Colors.white,
                   iconSize: 24,
                   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
@@ -431,11 +436,6 @@ class _UpperBodyWorkoutsState extends State<UpperBodyWorkouts> {
                       icon: Icons.fitness_center,
                       text: 'Fitness',
                       backgroundColor: Colors.blue,
-                    ),
-                    GButton(
-                      icon: Icons.whatshot,
-                      text: 'Workouts',
-                      backgroundColor: Colors.red,
                     ),
                     GButton(
                       icon: Icons.person,
@@ -472,14 +472,6 @@ class _UpperBodyWorkoutsState extends State<UpperBodyWorkouts> {
                             ));
                       }
                       if (index == 3) {
-                        Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.fade,
-                              child: WorkoutsIntro(),
-                            ));
-                      }
-                      if (index == 4) {
                         Navigator.push(
                             context,
                             PageTransition(

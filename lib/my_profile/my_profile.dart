@@ -31,362 +31,374 @@ class MyProfile extends StatefulWidget {
 }
 
 class _MyProfileState extends State<MyProfile> {
-  int _selectedIndex = 4;
+  int _selectedIndex = 3;
+
+  Future<bool> _onBackPressed() {
+    return showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+              title: Text("Do you really want to exit Dieten?"),
+              actions: <Widget>[
+                FlatButton(
+                  child: Text('No'),
+                  onPressed: () => Navigator.of(context).pop(false),
+                ),
+                FlatButton(
+                  child: Text('Yes'),
+                  onPressed: () =>
+                      Navigator.popAndPushNamed(context, Dashboard.id),
+                )
+              ],
+            ));
+  }
+
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        drawer: Drawer(
-          elevation: 20.0,
-          child: Container(
-            height: MediaQuery.of(context).size.height,
-            child: ListView(
-              padding: EdgeInsets.zero,
-              children: <Widget>[
-                DrawerHeader(
-                  decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                          colors: [
-                        const Color(0xff23b6e6).withOpacity(0.7),
-                        const Color(0xff02d39a).withOpacity(0.5),
-                      ])),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      SizedBox(
-                        height: 15.0,
-                      ),
-                      Text(
-                        'Dieten',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 40.0,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 15.0,
-                      ),
-                      Text(
-                        'Plan It. Achieve It.',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15.0,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                ListTile(
-                  leading: Text(
-                    "Home",
-                    style: TextStyle(
-                        color: Color(0xFF12947f),
-                        fontSize: 17.0,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  trailing: Icon(
-                    Icons.home,
-                    color: Color(0xff23b6e6),
-                  ),
-                  onTap: () {
-                    Navigator.pop(context);
-                    Navigator.push(
-                        context,
-                        PageTransition(
-                          type: PageTransitionType.rightToLeft,
-                          child: Dashboard(),
-                        ));
-                  },
-                ),
-                ListTile(
-                  leading: Text(
-                    "Calorie Tracker",
-                    style: TextStyle(
-                        color: Color(0xFF12947f),
-                        fontSize: 17.0,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  trailing: Icon(
-                    Icons.fastfood,
-                    color: Colors.purple,
-                  ),
-                  onTap: () {
-                    Navigator.pop(context);
-                    Navigator.push(
-                        context,
-                        PageTransition(
-                          type: PageTransitionType.rightToLeft,
-                          child: CalorieTracker(),
-                        ));
-                  },
-                ),
-                ListTile(
-                  leading: Text(
-                    "Meal Planner",
-                    style: TextStyle(
-                        color: Color(0xFF12947f),
-                        fontSize: 17.0,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  trailing: Icon(
-                    Icons.local_dining,
-                    color: Colors.pinkAccent,
-                  ),
-                  onTap: () {
-                    Navigator.pop(context);
-                    Navigator.push(
-                        context,
-                        PageTransition(
-                          type: PageTransitionType.rightToLeft,
-                          child: MealPlanner(),
-                        ));
-                  },
-                ),
-                ListTile(
-                  leading: Text(
-                    "Fit@Home",
-                    style: TextStyle(
-                        color: Color(0xFF12947f),
-                        fontSize: 17.0,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  trailing: Icon(
-                    Icons.fitness_center,
-                    color: Color(0xFFffd31d),
-                  ),
-                  onTap: () {
-                    Navigator.pop(context);
-                    Navigator.push(
-                        context,
-                        PageTransition(
-                          type: PageTransitionType.rightToLeft,
-                          child: FitAtHome(),
-                        ));
-                  },
-                ),
-                ListTile(
-                  leading: Text(
-                    "Profile",
-                    style: TextStyle(
-                        color: Color(0xFF12947f),
-                        fontSize: 17.0,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  trailing: Icon(
-                    Icons.account_circle,
-                    color: Colors.green,
-                  ),
-                  onTap: () {
-                    Navigator.pop(context);
-                    Navigator.push(
-                        context,
-                        PageTransition(
-                          type: PageTransitionType.rightToLeft,
-                          child: MyProfile(),
-                        ));
-                  },
-                ),
-                SizedBox(height: 20.0),
-                MaterialButton(
-                  padding: EdgeInsets.all(0.0),
-                  splashColor: Colors.white,
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        PageTransition(
-                          type: PageTransitionType.fade,
-                          child: SplashScreen(),
-                        ));
-                  },
-                  child: Container(
+    return WillPopScope(
+      onWillPop: () async {
+        Navigator.pop(context, true);
+        return false;
+      },
+      child: SafeArea(
+        child: Scaffold(
+          drawer: Drawer(
+            elevation: 20.0,
+            child: Container(
+              height: MediaQuery.of(context).size.height,
+              child: ListView(
+                padding: EdgeInsets.zero,
+                children: <Widget>[
+                  DrawerHeader(
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(35.0),
                         gradient: LinearGradient(
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
                             colors: [
-                              const Color(0xff23b6e6),
-                              const Color(0xff02d39a),
-                            ])),
-                    width: 100.0,
-                    height: 40.0,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          const Color(0xff23b6e6).withOpacity(0.7),
+                          const Color(0xff02d39a).withOpacity(0.5),
+                        ])),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
+                        SizedBox(
+                          height: 15.0,
+                        ),
                         Text(
-                          'Logout',
+                          'Dieten',
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 40.0,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 15.0,
+                        ),
+                        Text(
+                          'Plan It. Achieve It.',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15.0,
                           ),
                         ),
                       ],
                     ),
                   ),
-                ),
-                SizedBox(
-                  width: 60.0,
-                  height: 50,
-                  child: Divider(
-                    height: 30.0,
-                    thickness: 1.2,
-                  ),
-                ),
-                SizedBox(height: 50.0),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Center(
-                    child: Text(
-                      'Version: 1.0.0',
+                  ListTile(
+                    leading: Text(
+                      "Home",
                       style: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 14.0,
-                        fontWeight: FontWeight.bold,
-                      ),
+                          color: Color(0xFF12947f),
+                          fontSize: 17.0,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    trailing: Icon(
+                      Icons.home,
+                      color: Color(0xff23b6e6),
+                    ),
+                    onTap: () {
+                      Navigator.pop(context);
+                      Navigator.push(
+                          context,
+                          PageTransition(
+                            type: PageTransitionType.rightToLeft,
+                            child: Dashboard(),
+                          ));
+                    },
+                  ),
+                  ListTile(
+                    leading: Text(
+                      "Calorie Tracker",
+                      style: TextStyle(
+                          color: Color(0xFF12947f),
+                          fontSize: 17.0,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    trailing: Icon(
+                      Icons.fastfood,
+                      color: Colors.purple,
+                    ),
+                    onTap: () {
+                      Navigator.pop(context);
+                      Navigator.push(
+                          context,
+                          PageTransition(
+                            type: PageTransitionType.rightToLeft,
+                            child: CalorieTracker(),
+                          ));
+                    },
+                  ),
+                  ListTile(
+                    leading: Text(
+                      "Meal Planner",
+                      style: TextStyle(
+                          color: Color(0xFF12947f),
+                          fontSize: 17.0,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    trailing: Icon(
+                      Icons.local_dining,
+                      color: Colors.pinkAccent,
+                    ),
+                    onTap: () {
+                      Navigator.pop(context);
+                      Navigator.push(
+                          context,
+                          PageTransition(
+                            type: PageTransitionType.rightToLeft,
+                            child: MealPlanner(),
+                          ));
+                    },
+                  ),
+                  ListTile(
+                    leading: Text(
+                      "Fit@Home",
+                      style: TextStyle(
+                          color: Color(0xFF12947f),
+                          fontSize: 17.0,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    trailing: Icon(
+                      Icons.fitness_center,
+                      color: Color(0xFFffd31d),
+                    ),
+                    onTap: () {
+                      Navigator.pop(context);
+                      Navigator.push(
+                          context,
+                          PageTransition(
+                            type: PageTransitionType.rightToLeft,
+                            child: FitAtHome(),
+                          ));
+                    },
+                  ),
+                  ListTile(
+                    leading: Text(
+                      "Profile",
+                      style: TextStyle(
+                          color: Color(0xFF12947f),
+                          fontSize: 17.0,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    trailing: Icon(
+                      Icons.account_circle,
+                      color: Colors.green,
+                    ),
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                  SizedBox(height: 20.0),
+                  SizedBox(
+                    width: 60.0,
+                    height: 50,
+                    child: Divider(
+                      height: 30.0,
+                      thickness: 1.2,
                     ),
                   ),
-                ),
-              ],
-            ),
-          ),
-        ),
-        backgroundColor: Colors.white,
-        bottomNavigationBar: Container(
-            decoration: BoxDecoration(color: Colors.white, boxShadow: [
-              BoxShadow(blurRadius: 20, color: Colors.black.withOpacity(.1))
-            ]),
-            child: SafeArea(
-                child: Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
-              child: GNav(
-                  gap: 8,
-                  activeColor: Colors.white,
-                  iconSize: 24,
-                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                  duration: Duration(milliseconds: 800),
-                  tabBackgroundColor: Colors.grey[800],
-                  tabs: [
-                    GButton(
-                      icon: Icons.home,
-                      text: 'Home',
-                      backgroundColor: Colors.pink,
-                    ),
-                    GButton(
-                      icon: Icons.local_dining,
-                      text: 'Tracking',
-                      backgroundColor: Color(0xFFffd31d),
-                    ),
-                    GButton(
-                      icon: Icons.fitness_center,
-                      text: 'Fitness',
-                      backgroundColor: Colors.blue,
-                    ),
-                    GButton(
-                      icon: Icons.whatshot,
-                      text: 'Workouts',
-                      backgroundColor: Colors.red,
-                    ),
-                    GButton(
-                      icon: Icons.person,
-                      text: 'Profile',
-                      backgroundColor: Colors.green,
-                    ),
-                  ],
-                  selectedIndex: _selectedIndex,
-                  onTabChange: (index) {
-                    setState(() {
-                      _selectedIndex = index;
-                      if (index == 0) {
-                        Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.fade,
-                              child: Dashboard(),
-                            ));
-                      }
-                      if (index == 1) {
-                        Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.fade,
-                              child: CalorieTracker(),
-                            ));
-                      }
-                      if (index == 2) {
-                        Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.fade,
-                              child: FitAtHome(),
-                            ));
-                      }
-                      if (index == 3) {
-                        Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.fade,
-                              child: WorkoutsIntro(),
-                            ));
-                      }
-                      if (index == 4) {
-                        Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.fade,
-                              child: MyProfile(),
-                            ));
-                      }
-                    });
-                  }),
-            ))),
-        body: Stack(
-          children: <Widget>[
-            Container(
-              height: 250,
-              decoration: BoxDecoration(
-                  gradient: LinearGradient(colors: [startColor, endColor])),
-            ),
-            Positioned(
-              top: 0,
-              right: 0,
-              left: 0,
-              child: Container(
-                height: 70,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.only(top: 40),
-                      child: Text(
-                        'Dieten User Profile',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontFamily: 'Jost',
-                          fontSize: 25,
-                          fontWeight: FontWeight.bold,
+                  Column(
+                    children: <Widget>[
+                      SizedBox(height: 15.0),
+                      MaterialButton(
+                        padding: EdgeInsets.all(0.0),
+                        splashColor: Colors.white,
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              PageTransition(
+                                type: PageTransitionType.fade,
+                                child: SplashScreen(),
+                              ));
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(35.0),
+                              gradient: LinearGradient(
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
+                                  colors: [
+                                    const Color(0xff23b6e6),
+                                    const Color(0xff02d39a),
+                                  ])),
+                          width: 100.0,
+                          height: 40.0,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: <Widget>[
+                              Text(
+                                'Logout',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Container(
-              child: ListView(
-                children: <Widget>[
-                  new CardHolder(),
-                  SizedBox(
-                    height: 200,
-                  )
+                      SizedBox(height: 15.0),
+                      Padding(
+                        padding: const EdgeInsets.all(5.0),
+                        child: Center(
+                          child: Text(
+                            'Version: 1.0.0',
+                            style: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 14.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),
-          ],
+          ),
+          backgroundColor: Colors.white,
+          bottomNavigationBar: Container(
+              decoration: BoxDecoration(color: Colors.white, boxShadow: [
+                BoxShadow(blurRadius: 20, color: Colors.black.withOpacity(.1))
+              ]),
+              child: SafeArea(
+                  child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
+                child: GNav(
+                    gap: 5,
+                    activeColor: Colors.white,
+                    iconSize: 24,
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                    duration: Duration(milliseconds: 800),
+                    tabBackgroundColor: Colors.grey[800],
+                    tabs: [
+                      GButton(
+                        icon: Icons.home,
+                        text: 'Home',
+                        backgroundColor: Colors.pink,
+                      ),
+                      GButton(
+                        icon: Icons.local_dining,
+                        text: 'Tracking',
+                        backgroundColor: Color(0xFFffd31d),
+                      ),
+                      GButton(
+                        icon: Icons.fitness_center,
+                        text: 'Fitness',
+                        backgroundColor: Colors.blue,
+                      ),
+                      GButton(
+                        icon: Icons.person,
+                        text: 'Profile',
+                        backgroundColor: Colors.green,
+                      ),
+                    ],
+                    selectedIndex: _selectedIndex,
+                    onTabChange: (index) {
+                      setState(() {
+                        _selectedIndex = index;
+                        if (index == 0) {
+                          Navigator.push(
+                              context,
+                              PageTransition(
+                                type: PageTransitionType.fade,
+                                child: Dashboard(),
+                              ));
+                        }
+                        if (index == 1) {
+                          Navigator.push(
+                              context,
+                              PageTransition(
+                                type: PageTransitionType.fade,
+                                child: CalorieTracker(),
+                              ));
+                        }
+                        if (index == 2) {
+                          Navigator.push(
+                              context,
+                              PageTransition(
+                                type: PageTransitionType.fade,
+                                child: FitAtHome(),
+                              ));
+                        }
+                        if (index == 3) {
+                          Navigator.push(
+                              context,
+                              PageTransition(
+                                type: PageTransitionType.fade,
+                                child: MyProfile(),
+                              ));
+                        }
+                      });
+                    }),
+              ))),
+          body: Stack(
+            children: <Widget>[
+              Container(
+                height: 250,
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(colors: [startColor, endColor])),
+              ),
+              Positioned(
+                top: 0,
+                right: 0,
+                left: 0,
+                child: Container(
+                  height: 70,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.only(top: 40),
+                        child: Text(
+                          'Dieten User Profile',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: 'Jost',
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Container(
+                child: ListView(
+                  children: <Widget>[
+                    new CardHolder(),
+                    SizedBox(
+                      height: 200,
+                    )
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

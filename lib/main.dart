@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        initialRoute: SplashScreen.id,
+        initialRoute: Dashboard.id,
         routes: {
           // Named Routes
           SplashScreen.id: (context) => SplashScreen(),

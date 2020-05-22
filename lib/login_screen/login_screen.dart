@@ -672,7 +672,7 @@ class HomepageState extends State<LoginPage> {
               ),
               islogin
                   ? Positioned(
-                      bottom: MediaQuery.of(context).size.height * 0.14,
+                      bottom: MediaQuery.of(context).size.height * 0.11,
                       left: loginLeftValue,
                       child: GestureDetector(
                         onTap: () {
@@ -698,7 +698,7 @@ class HomepageState extends State<LoginPage> {
                       ),
                     )
                   : Positioned(
-                      bottom: MediaQuery.of(context).size.height * 0.14,
+                      bottom: MediaQuery.of(context).size.height * 0.11,
                       left: registeredLeftValue,
                       child: GestureDetector(
                         onTap: () {

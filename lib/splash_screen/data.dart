@@ -48,7 +48,7 @@ List<SliderModel> getSlides() {
   sliderModel.setDesc(
       "Creating a healthy daily routine keeps you grounded and can have a big impact on your physical and mental health.");
   sliderModel.setTitle("Motivation");
-  sliderModel.setImageAssetPath("assets/images//women-running.jpg");
+  sliderModel.setImageAssetPath("assets/images/women-running.jpg");
   slides.add(sliderModel);
 
   sliderModel = new SliderModel();
@@ -62,7 +62,7 @@ List<SliderModel> getSlides() {
   sliderModel = new SliderModel();
   //4
   sliderModel.setDesc(
-      "With Dieten, you can always Plan your goals and work hard to achieve them.");
+      "With Dieten, you can always Plan your goals and work hard to Achieve them.");
   sliderModel.setTitle("Dieten");
   sliderModel.setImageAssetPath("assets/images/app-logo.png");
   slides.add(sliderModel);
