@@ -26,10 +26,10 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 class FitAtHome extends StatefulWidget {
   static String id = 'fit_at_home';
 
-  FitAtHome({this.sleepHours, this.sleepMinutes, this.sleepMotivation});
+  FitAtHome({this.sleepMotivation});
 
-  int sleepHours;
-  int sleepMinutes;
+  int sleepHours = 5;
+  int sleepMinutes = 40;
   String sleepMotivation;
 
   @override

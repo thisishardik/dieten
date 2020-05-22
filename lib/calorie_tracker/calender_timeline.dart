@@ -24,7 +24,7 @@ class _CalenderTimelineState extends State<CalenderTimeline> {
       activeDayColor: Color(0xFFF99878),
       activeBackgroundDayColor: Color(0xFF414956),
       dotsColor: Colors.white,
-      selectableDayPredicate: (date) => date.day != 23,
+//      selectableDayPredicate: (date) => date.day != 23,
     );
   }
 }

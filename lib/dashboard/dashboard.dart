@@ -30,7 +30,7 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
-  int waterLevelCurrentStep = 3;
+  int waterLevelCurrentStep = 0;
   int _selectedIndex = 0;
 
   static const TextStyle optionStyle =
@@ -57,6 +57,8 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
       style: optionStyle,
     ),
   ];
+
+  IconData icon = FontAwesomeIcons.minusCircle;
 
   @override
   Widget build(BuildContext context) {
@@ -574,23 +576,25 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                             size: 35,
                           ),
                         ),
-                        IconButton(
-                          onPressed: () {
-                            setState(() {
-                              if (waterLevelCurrentStep >= 0 &&
-                                  waterLevelCurrentStep <= 12) {
-                                waterLevelCurrentStep--;
-                              } else {
-                                waterLevelCurrentStep = 0;
-                              }
-                            });
-                          },
-                          icon: Icon(
-                            FontAwesomeIcons.minusCircle,
-                            color: Colors.black,
-                            size: 35,
-                          ),
-                        ),
+                        waterLevelCurrentStep != 0
+                            ? IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    if (waterLevelCurrentStep >= 0 &&
+                                        waterLevelCurrentStep <= 12) {
+                                      waterLevelCurrentStep--;
+                                    } else {
+                                      waterLevelCurrentStep = 0;
+                                    }
+                                  });
+                                },
+                                icon: Icon(
+                                  FontAwesomeIcons.minusCircle,
+                                  color: Colors.black,
+                                  size: 35,
+                                ),
+                              )
+                            : Container(),
                       ],
                     ),
                   ],

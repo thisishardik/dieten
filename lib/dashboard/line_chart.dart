@@ -184,43 +184,51 @@ class _LineChartCaloriesState extends State<LineChartCalories> {
         show: true,
         bottomTitles: SideTitles(
           showTitles: true,
-          reservedSize: 22,
+          reservedSize: 11,
           textStyle: const TextStyle(
               color: Color(0xff68737d),
               fontWeight: FontWeight.bold,
-              fontSize: 16),
+              fontSize: 14),
           getTitles: (value) {
             switch (value.toInt()) {
-              case 2:
+              case 1:
+                return 'JAN';
+              case 3:
                 return 'MAR';
               case 5:
-                return 'JUN';
-              case 8:
+                return 'MAY';
+              case 7:
+                return 'JUL';
+              case 9:
                 return 'SEP';
             }
             return '';
           },
-          margin: 8,
+          margin: 7,
         ),
         leftTitles: SideTitles(
           showTitles: true,
           textStyle: const TextStyle(
             color: Color(0xff67727d),
             fontWeight: FontWeight.bold,
-            fontSize: 15,
+            fontSize: 12,
           ),
           getTitles: (value) {
             switch (value.toInt()) {
               case 1:
-                return '10k';
+                return '0.5k';
+              case 2:
+                return '1k';
               case 3:
-                return '30k';
+                return '1.5k';
+              case 4:
+                return '2k';
               case 5:
-                return '50k';
+                return '2.5k';
             }
             return '';
           },
-          reservedSize: 28,
+          reservedSize: 25,
           margin: 12,
         ),
       ),

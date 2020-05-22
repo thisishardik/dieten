@@ -585,14 +585,15 @@ class _CalorieTrackerState extends State<CalorieTracker> {
                   height: 20.0,
                 ),
                 Container(
-                  width: 100.0,
-                  height: 100.0,
+                  width: 200.0,
+                  height: 200.0,
                   child: Center(
                       child: _image == null
                           ? Text(
-                              'No image selected',
+                              'Sample: No image selected',
                               style: TextStyle(
                                 fontSize: 15.0,
+                                fontWeight: FontWeight.bold,
                               ),
                             )
                           : Image.file(_image)),
