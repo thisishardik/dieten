@@ -1,3 +1,4 @@
+import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:flutter/material.dart';
 import 'package:hackathoncalorie/height_and_weight/height_and_weight.dart';
 import 'package:hackathoncalorie/tools/goals_page_with_loader.dart';
@@ -15,6 +16,22 @@ class _GoalPageState extends State<GoalPage> {
   int selectedPurpose = 0;
   int currentIntGoalWeightValue = 75;
   NumberPicker integerNumberGoalWeightPicker;
+  @override
+  void initState() {
+    super.initState();
+    BackButtonInterceptor.add(myInterceptor);
+  }
+
+  @override
+  void dispose() {
+    BackButtonInterceptor.remove(myInterceptor);
+    super.dispose();
+  }
+
+  bool myInterceptor(bool stopDefaultButtonEvent) {
+    Navigator.pop(context); // Do some stuff.
+    return true;
+  }
 
   @override
   Widget build(BuildContext context) {

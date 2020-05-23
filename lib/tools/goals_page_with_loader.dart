@@ -28,7 +28,7 @@ class _GoalsPageWithLoaderState extends State<GoalsPageWithLoader> {
   }
 
   startTimer() {
-    var duration = Duration(seconds: 5);
+    var duration = Duration(seconds: 6);
     return Timer(duration, route);
   }
 

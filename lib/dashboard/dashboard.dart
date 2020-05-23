@@ -93,9 +93,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () {
-        Navigator.of(context).pop();
-      },
+      onWillPop: onBackPressed,
       child: SafeArea(
         child: Scaffold(
           appBar: AppBar(

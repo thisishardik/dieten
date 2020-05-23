@@ -1,3 +1,4 @@
+import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hackathoncalorie/dashboard/dashboard.dart';
@@ -22,6 +23,23 @@ class HeightAndWeight extends StatefulWidget {
 }
 
 class _HeightAndWeightState extends State<HeightAndWeight> {
+  @override
+  void initState() {
+    super.initState();
+    BackButtonInterceptor.add(myInterceptor);
+  }
+
+  @override
+  void dispose() {
+    BackButtonInterceptor.remove(myInterceptor);
+    super.dispose();
+  }
+
+  bool myInterceptor(bool stopDefaultButtonEvent) {
+    Navigator.pop(context); // Do some stuff.
+    return true;
+  }
+
   int currentIntWeightValue = 30;
   NumberPicker integerNumberWeightPicker;
   int currentIntAgeValue = 10;
