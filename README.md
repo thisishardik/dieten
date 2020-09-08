@@ -1,6 +1,6 @@
-# hackathoncalorie
+# Dieten
 
-A new Flutter application.
+Your personalized health app.
 
 ## Getting Started
 
